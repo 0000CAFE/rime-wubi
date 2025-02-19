@@ -17,13 +17,14 @@ schema:
 switches:
   - name: ascii_mode
     reset: 0
-    states: [ 中, En ]
+    states: [ 中文, 西文 ]
   - name: zh_trad
     reset: 0    # 初始状态为 0: 简 -> 简 1: 简 -> 繁
     states: [ 简体, 繁体 ]
   - name: full_shape
     states: [ 半角, 全角 ]
   - name: extended_charset
+    reset: 0
     states: [ 常用, 扩展 ]
   - name: ascii_punct
     states: [ 。，, ．， ]
@@ -54,16 +55,16 @@ engine:
   filters:
     # - simplifier@tradition
     - lua_filter@*wubi86_jidian_single_char_first_filter # 单字优先
-#    - lua_filter@*wubi86_jidian_single_char_only # 纯单字
+    # - lua_filter@*wubi86_jidian_single_char_only # 纯单字
 
 
 
 # 自动造词功能：参阅： https://github.com/KyleBing/rime-wubi86-jidian#6-%E5%BC%80%E5%90%AF%E8%87%AA%E5%8A%A8%E9%80%A0%E8%AF%8D
 
 speller:
-  max_code_length: 4                    # 四码上屏
-  auto_select: true                     # 四码唯一时，自动上屏
-#  auto_clear: max_length                # 空码时自动清空
+  # max_code_length: 4                    # 四码上屏
+  # auto_select: true                     # 四码唯一时，自动上屏
+  # auto_clear: max_length                # 空码时自动清空
 
 translator:
   dictionary: wubi86_jidian             # 翻译器将调取此字典文件
@@ -76,7 +77,7 @@ translator:
 
   encode_commit_history: false          # 是否对已上屏词自动成词（仅 table_translator 有效）
   preedit_format:                       # 上屏码自定义
-#    - xform/.+//
+    # - xform/.+//
   comment_format:                       # 提示码自定义
     - xform/.+//                        # 当前默认不提示编码，消除所有候选词后的提示码
 
@@ -102,15 +103,15 @@ reverse_lookup:
   dictionary: pinyin_simp  # 反查使用的拼音词库
   prefix: "z"              # 反查前缀，以它为起点
   suffix: "'"              # 反查后缀，以它为结点
-  tips: [拼音]              # 反查时的提示信息
-
+  tips: 〔拼音〕             # 反查时的提示信息
   preedit_format:
     - xform/([nl])v/$1ü/
     - xform/([nl])ue/$1üe/
     - xform/([jqxy])v/$1u/
+    
 punctuator:
   import_preset: default
-#  import_preset: symbols
+# import_preset: symbols
 # 开始快捷输入符号功能，前面留两个空格
 # 对应需要将下面 recognizer -> patterns 下面的 punct 字段的注释去掉
 
