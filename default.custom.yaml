@@ -18,9 +18,9 @@ patch:
 
   # Menu
   menu:
-    page_size: 9                    # 候选词数量，最多支持 10 个
+    page_size: 8                    # 候选词数量，最多支持 10 个
   switcher:
-    hotkeys:        # 弹出菜单的快捷键
+    hotkeys:                        # 弹出菜单的快捷键
       - "Control+0"
       - "Shift+Control+0"
     abbreviate_options: true
@@ -37,9 +37,9 @@ patch:
   # 参考链接： https://gist.github.com/lotem/2981316
 
   ascii_composer:
-    good_old_caps_lock: true       # true: 在保持 cap 键原有的特征， false: 点击不会切换大小写
+    good_old_caps_lock: true        # true: 在保持 cap 键原有的特征， false: 点击不会切换大小写
     switch_key:
-      Caps_Lock: noop        # 如果想用 cap 键切换中英文输入，就修改为上面三种的任一一种，否则用 noop
+      Caps_Lock: noop               # 如果想用 cap 键切换中英文输入，就修改为上面三种的任一一种，否则用 noop
       Shift_L: commit_code          # macOs 上 shift 键不区别左右，设置参数同上
       Shift_R: commit_code
       Control_L: noop
